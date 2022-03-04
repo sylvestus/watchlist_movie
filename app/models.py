@@ -97,6 +97,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
 
+
     reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
     
 
@@ -111,7 +112,7 @@ class User(UserMixin,db.Model):
 
 
     def verify_password(self,password):
-            return check_password_hash(self.pass_secure,password)
+            return check_password_hash(self.password_secure,password)
 
     def save_review(self):
         db.session.add(self)
